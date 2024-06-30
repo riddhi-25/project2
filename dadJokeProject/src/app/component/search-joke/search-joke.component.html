@@ -1,0 +1,12 @@
+<div class="small">
+
+    <div class="upper">
+        
+        <input type="text" (input)="onInputChange($event)">
+        
+        <button (click)="getFunc()">+</button>
+    </div>
+    <div class="all-jokes">
+        <span *ngFor="let item of jokeHolder" [ngStyle]="{'display': 'flex', 'flex-direction': 'column', 'gap': '5px'}" >{{item.joke}}</span>
+    </div>
+</div>
