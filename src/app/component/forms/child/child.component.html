@@ -1,0 +1,26 @@
+
+
+<div [formGroup]="parentForm">
+  <div formArrayName="childSkills">
+    <div *ngFor="let childSkill of parentFormArray.controls; let i = index" [formGroupName]="i">
+      <input formControlName="name" type="text" class="m-2 ml-5 outline outline-gray-400 rounded" placeholder="Child Skill">
+      
+      <ng-container *ngIf="hasChildSkills(childSkill)">
+        <app-child 
+          [parentForm]="getChildSkillFormGroup(childSkill)"
+          [parentFormArray]="getChildSkillsFormArray(childSkill)">
+        </app-child>
+      </ng-container>
+      
+      <button (click)="addChildSkill(childSkill)" class="m-2 bg-gradient-to-r from-indigo-500 to-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Add Child Skill
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

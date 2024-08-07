@@ -1,0 +1,43 @@
+<!-- <form [formGroup]="skillForm">
+  <div formArrayName="primarySkills">
+    <div *ngFor="let primarySkill of getPrimarySkills(); let i = index" [formGroupName]="i">
+      <input formControlName="name" type="text" class="m-2 outline outline-gray-400 rounded" placeholder="Primary Skill">
+      <app-child [primarySkill]="primarySkill"></app-child> 
+      <button (click)="addChildSkill(i)" class="m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Child Skill</button>
+      <div formArrayName="childSkills">
+        <div *ngFor="let childSkill of getChildSkills(i); let j = index" [formGroupName]="j">
+          <input formControlName="name" type="text" class="m-2 outline outline-gray-400 rounded" placeholder="Child Skill">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <button (click)="addPrimarySkill()" class="m-2 bg-gradient-to-r from-indigo-500 to-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Primary Skill</button>
+</form>  -->
+
+<form [formGroup]="skillForm">
+  <div formArrayName="primarySkills">
+    <div *ngFor="let primarySkill of getPrimarySkills(); let i = index" [formGroupName]="i">
+      <input formControlName="name" type="text" class="m-2 outline outline-gray-400 rounded" placeholder="Primary Skill">
+
+      <!-- Pass the correct FormGroup and FormArray to the child component -->
+      <app-child 
+        [parentForm]="primarySkill" 
+        [parentFormArray]="getChildSkills(primarySkill)">
+      </app-child>
+
+      <button (click)="addChildSkill(i)" class="m-2 bg-gradient-to-r from-indigo-500 to-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Add Child Skill
+      </button>
+    </div>
+  </div>
+  <button (click)="addPrimarySkill()" class="m-2 bg-gradient-to-r from-indigo-500 to-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Add Primary Skill
+  </button>
+</form>
+
+
+
+
+
+
